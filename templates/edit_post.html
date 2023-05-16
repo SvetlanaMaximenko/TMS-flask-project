@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit: {{ post.title }}</title>
+</head>
+<body>
+
+    <div>
+        {% for flashed_message in get_flashed_messages() %}
+
+            <p style="background-color: #d9696a; color: white; padding: 10px; border-radius: 10px">
+                {{ flashed_message }}
+            </p>
+
+        {% endfor %}
+    </div>
+
+    <form method="post">
+
+        <div>
+            <label>
+                Заголовок
+                <input name="title" value="{{ request.form["title"] or post.title }}">
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Содержимое
+                <textarea name="text">{{ request.form["text"] or post.content }}</textarea>
+            </label>
+        </div>
+
+        <input type="submit" value="Отправить">
+
+    </form>
+
+</body>
+</html>
