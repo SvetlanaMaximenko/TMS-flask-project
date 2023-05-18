@@ -91,6 +91,18 @@ def edit_post(post_id: int):
     return render_template("edit_post.html", post=post)
 
 
+@app.route("/post/<int:post_id>/delete", methods=("GET", "POST"))
+def delete_post(post_id: int):
+    # Если нет по такому `id` заметки, то отправится 404
+    post: Posts = db.get_or_404(Posts, post_id, description="Неверно указан ID поста")
+
+    db.session.delete(post)  # Удаляем запись в таблице
+    db.session.commit()  # Подтверждаем
+
+    all_posts: list[Posts] = Posts.query.all()
+    return render_template("home.html", posts=all_posts)
+
+
 if __name__ == '__main__':
     # Создаем таблицы
     with app.app_context():

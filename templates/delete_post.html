@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete: {{ post.title }}</title>
+</head>
+<body>
+    <div>
+        {% for flashed_message in get_flashed_messages() %}
+
+            <p style="background-color: #d9696a; color: white; padding: 10px; border-radius: 10px">
+                {{ flashed_message }}
+            </p>
+
+        {% endfor %}
+    </div>
+</body>
+    <form method="post">
+
+        <input type="submit" value="Удалить">
+
+    </form>
+</html>
